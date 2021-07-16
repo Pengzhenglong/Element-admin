@@ -25,17 +25,26 @@ export default {
     }
   },
   methods:{
-edit(){
-
-},
-remove(){
-
-}
-  },
-created(){
+    fetch(){
   this.$http.get('articles').then(res=>{
     this.articles=res.data
   })
+    },
+edit(id){
+    this.$router.push(`/articles/${id}/edit`)
+},
+remove(id){
+    this.$http.delete(`articles/${id}`).then(()=>{
+       this.$message({
+          message: '删除成功！！！',
+          type: 'success'
+        });
+        this.fetch()
+    })
+}
+  },
+created(){
+this.fetch()
 }
 
 }
