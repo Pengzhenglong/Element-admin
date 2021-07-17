@@ -14,7 +14,7 @@
     </el-form-item>
     <el-form-item>
       <el-button type="primary" native-type="onSubmit">立即创建</el-button>
-      <el-button>取消</el-button>
+      <el-button    @click="cancel">取消</el-button>
     </el-form-item>
   </el-form>
 </template>
@@ -30,6 +30,9 @@ export default {
     }
   },
   methods: {
+    cancel(){
+this.$router.push('/articles/index')
+    },
     saveArticle() {
       this.$http.post('articles', this.article).then(() => {
         this.$message({

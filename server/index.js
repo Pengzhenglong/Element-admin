@@ -19,11 +19,11 @@ const Article = mongoose.model('Article', new mongoose.Schema({
 }))
 
 // 展示数据
-app.get('/test', async (req, res) => {
-  res.send('index')
-})
+// app.get('/test', async (req, res) => {
+//   res.send('index')
+// })
 
-// 提交数据
+// 提交数据新增文章
 app.post('/api/articles', async (req, res) => {
   const article = await Article.create(req.body)
   res.send(article)
@@ -31,16 +31,17 @@ app.post('/api/articles', async (req, res) => {
 // 展示文章数据
 app.get('/api/articles', async (req, res) => {
   const article = await Article.find()
-
-  // 删除文章
-  app.delete('/api/articles/:id', async (req, res) => {
-    await Article.findByIdAndDelete(req.params.id)
-    res.send({
-      status: true
-    })
-  })
   res.send(article)
 })
+// 删除文章
+app.delete('/api/articles/:id', async (req, res) => {
+  await Article.findByIdAndDelete(req.params.id)
+  res.send({
+    status: true
+  })
+})
+
+
 // 文章详情
 
 app.get('/api/articles/:id', async (req, res) => {
@@ -51,7 +52,7 @@ app.get('/api/articles/:id', async (req, res) => {
 // 修改文章
 
 app.put('/api/articles/:id', async (req, res) => {
-  const article = await Article.findByIdAndUpdate(req.params.id,req.body)
+  const article = await Article.findByIdAndUpdate(req.params.id, req.body)
   res.send(article)
 })
 

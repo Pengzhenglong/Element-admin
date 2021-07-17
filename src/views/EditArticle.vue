@@ -14,7 +14,7 @@
     </el-form-item>
     <el-form-item>
       <el-button type="primary" native-type="onSubmit">保存</el-button>
-      <el-button>取消</el-button>
+      <el-button @click="cancel">取消</el-button>
     </el-form-item>
   </el-form>
 </template>
@@ -30,6 +30,9 @@ export default {
     }
   },
   methods: {
+    cancel() {
+ this.$router.push('/articles/index')
+    },
     saveArticle() {
       this.$http.put(`articles/${this.$route.params.id}`, this.article).then(() => {
         this.$message({
@@ -40,13 +43,13 @@ export default {
       })
 
     },
-    fetch(){
-      this.$http.get(`articles/${this.$route.params.id}`).then(res=>{
-        this.article=res.data
+    fetch() {
+      this.$http.get(`articles/${this.$route.params.id}`).then(res => {
+        this.article = res.data
       })
     }
   },
-  created(){
+  created() {
     this.fetch()
   }
 }

@@ -32,8 +32,9 @@ export default {
     },
 edit(id){
     this.$router.push(`/articles/${id}/edit`)
-},
+}, 
 remove(id){
+  console.log(id)
     this.$http.delete(`articles/${id}`).then(()=>{
        this.$message({
           message: '删除成功！！！',
